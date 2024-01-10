@@ -5,7 +5,7 @@
     },
     "extends": [
         "airbnb-base",
-        "plugin:vue/vue3-essential",
+        "plugin:vue/vue3-recommended",
         "prettier"
     ],
     "parserOptions": {
@@ -13,8 +13,19 @@
         "sourceType": "module"
     },
     "plugins": [
-        "vue"
+        "vue",
+        "unused-imports"
     ],
     "rules": {
+        "vue/component-tags-order": [
+            "error",
+            {
+                "order": [
+                    "template",
+                    "script",
+                    "style"
+                ]
+            }
+        ]
     }
 }

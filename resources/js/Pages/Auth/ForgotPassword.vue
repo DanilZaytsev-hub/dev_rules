@@ -1,26 +1,3 @@
-<script setup>
-import GuestLayout from '@/Layouts/GuestLayout.vue';
-import InputError from '@/Components/InputError.vue';
-import InputLabel from '@/Components/InputLabel.vue';
-import PrimaryButton from '@/Components/PrimaryButton.vue';
-import TextInput from '@/Components/TextInput.vue';
-import { Head, useForm } from '@inertiajs/vue3';
-
-defineProps({
-    status: {
-        type: String,
-    },
-});
-
-const form = useForm({
-    email: '',
-});
-
-const submit = () => {
-    form.post(route('password.email'));
-};
-</script>
-
 <template>
     <GuestLayout>
         <Head title="Forgot Password" />
@@ -40,9 +17,9 @@ const submit = () => {
 
                 <TextInput
                     id="email"
+                    v-model="form.email"
                     type="email"
                     class="mt-1 block w-full"
-                    v-model="form.email"
                     required
                     autofocus
                     autocomplete="username"
@@ -59,3 +36,26 @@ const submit = () => {
         </form>
     </GuestLayout>
 </template>
+
+<script setup>
+import { Head, useForm } from "@inertiajs/vue3";
+import GuestLayout from "@/Layouts/GuestLayout.vue";
+import InputError from "@/Components/InputError.vue";
+import InputLabel from "@/Components/InputLabel.vue";
+import PrimaryButton from "@/Components/PrimaryButton.vue";
+import TextInput from "@/Components/TextInput.vue";
+
+defineProps({
+    status: {
+        type: String
+    }
+});
+
+const form = useForm({
+    email: ""
+});
+
+const submit = () => {
+    form.post(route("password.email"));
+};
+</script>

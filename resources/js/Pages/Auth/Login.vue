@@ -1,34 +1,3 @@
-<script setup>
-import Checkbox from '@/Components/Checkbox.vue';
-import GuestLayout from '@/Layouts/GuestLayout.vue';
-import InputError from '@/Components/InputError.vue';
-import InputLabel from '@/Components/InputLabel.vue';
-import PrimaryButton from '@/Components/PrimaryButton.vue';
-import TextInput from '@/Components/TextInput.vue';
-import { Head, Link, useForm } from '@inertiajs/vue3';
-
-defineProps({
-    canResetPassword: {
-        type: Boolean,
-    },
-    status: {
-        type: String,
-    },
-});
-
-const form = useForm({
-    email: '',
-    password: '',
-    remember: false,
-});
-
-const submit = () => {
-    form.post(route('login'), {
-        onFinish: () => form.reset('password'),
-    });
-};
-</script>
-
 <template>
     <GuestLayout>
         <Head title="Log in" />
@@ -43,9 +12,9 @@ const submit = () => {
 
                 <TextInput
                     id="email"
+                    v-model="form.email"
                     type="email"
                     class="mt-1 block w-full"
-                    v-model="form.email"
                     required
                     autofocus
                     autocomplete="username"
@@ -59,9 +28,9 @@ const submit = () => {
 
                 <TextInput
                     id="password"
+                    v-model="form.password"
                     type="password"
                     class="mt-1 block w-full"
-                    v-model="form.password"
                     required
                     autocomplete="current-password"
                 />
@@ -71,7 +40,7 @@ const submit = () => {
 
             <div class="block mt-4">
                 <label class="flex items-center">
-                    <Checkbox name="remember" v-model:checked="form.remember" />
+                    <Checkbox v-model:checked="form.remember" name="remember" />
                     <span class="ms-2 text-sm text-gray-600 dark:text-gray-400">Remember me</span>
                 </label>
             </div>
@@ -92,3 +61,34 @@ const submit = () => {
         </form>
     </GuestLayout>
 </template>
+
+<script setup>
+import { Head, Link, useForm } from "@inertiajs/vue3";
+import Checkbox from "@/Components/Checkbox.vue";
+import GuestLayout from "@/Layouts/GuestLayout.vue";
+import InputError from "@/Components/InputError.vue";
+import InputLabel from "@/Components/InputLabel.vue";
+import PrimaryButton from "@/Components/PrimaryButton.vue";
+import TextInput from "@/Components/TextInput.vue";
+
+defineProps({
+    canResetPassword: {
+        type: Boolean
+    },
+    status: {
+        type: String
+    }
+});
+
+const form = useForm({
+    email: "",
+    password: "",
+    remember: false
+});
+
+const submit = () => {
+    form.post(route("login"), {
+        onFinish: () => form.reset("password")
+    });
+};
+</script>

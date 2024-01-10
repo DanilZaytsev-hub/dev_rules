@@ -1,25 +1,3 @@
-<script setup>
-import GuestLayout from '@/Layouts/GuestLayout.vue';
-import InputError from '@/Components/InputError.vue';
-import InputLabel from '@/Components/InputLabel.vue';
-import PrimaryButton from '@/Components/PrimaryButton.vue';
-import TextInput from '@/Components/TextInput.vue';
-import { Head, Link, useForm } from '@inertiajs/vue3';
-
-const form = useForm({
-    name: '',
-    email: '',
-    password: '',
-    password_confirmation: '',
-});
-
-const submit = () => {
-    form.post(route('register'), {
-        onFinish: () => form.reset('password', 'password_confirmation'),
-    });
-};
-</script>
-
 <template>
     <GuestLayout>
         <Head title="Register" />
@@ -30,9 +8,9 @@ const submit = () => {
 
                 <TextInput
                     id="name"
+                    v-model="form.name"
                     type="text"
                     class="mt-1 block w-full"
-                    v-model="form.name"
                     required
                     autofocus
                     autocomplete="name"
@@ -46,9 +24,9 @@ const submit = () => {
 
                 <TextInput
                     id="email"
+                    v-model="form.email"
                     type="email"
                     class="mt-1 block w-full"
-                    v-model="form.email"
                     required
                     autocomplete="username"
                 />
@@ -61,9 +39,9 @@ const submit = () => {
 
                 <TextInput
                     id="password"
+                    v-model="form.password"
                     type="password"
                     class="mt-1 block w-full"
-                    v-model="form.password"
                     required
                     autocomplete="new-password"
                 />
@@ -76,9 +54,9 @@ const submit = () => {
 
                 <TextInput
                     id="password_confirmation"
+                    v-model="form.password_confirmation"
                     type="password"
                     class="mt-1 block w-full"
-                    v-model="form.password_confirmation"
                     required
                     autocomplete="new-password"
                 />
@@ -101,3 +79,25 @@ const submit = () => {
         </form>
     </GuestLayout>
 </template>
+
+<script setup>
+import { Head, Link, useForm } from "@inertiajs/vue3";
+import GuestLayout from "@/Layouts/GuestLayout.vue";
+import InputError from "@/Components/InputError.vue";
+import InputLabel from "@/Components/InputLabel.vue";
+import PrimaryButton from "@/Components/PrimaryButton.vue";
+import TextInput from "@/Components/TextInput.vue";
+
+const form = useForm({
+    name: "",
+    email: "",
+    password: "",
+    password_confirmation: ""
+});
+
+const submit = () => {
+    form.post(route("register"), {
+        onFinish: () => form.reset("password", "password_confirmation")
+    });
+};
+</script>
