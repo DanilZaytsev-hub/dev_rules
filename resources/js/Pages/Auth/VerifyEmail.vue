@@ -36,9 +36,7 @@ import GuestLayout from "@/Layouts/GuestLayout.vue";
 import PrimaryButton from "@/Components/PrimaryButton.vue";
 
 const props = defineProps({
-    status: {
-        type: String
-    }
+    status:  String
 });
 
 const form = useForm({});

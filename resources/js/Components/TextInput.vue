@@ -14,13 +14,19 @@ const model = defineModel({
     required: true
 });
 
-const input = ref(null);
 
+const input = ref(null);
 onMounted(() => {
     if (input.value.hasAttribute("autofocus")) {
         input.value.focus();
     }
+
+    hello()
 });
+
+function hello() {
+
+}
 
 defineExpose({ focus: () => input.value.focus() });
 </script>
