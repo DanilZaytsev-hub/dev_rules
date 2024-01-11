@@ -6,6 +6,7 @@
     "extends": [
         "airbnb-base",
         "plugin:vue/vue3-recommended",
+        "plugin:import/recommended",
         "prettier"
     ],
     "parserOptions": {
@@ -16,7 +17,15 @@
         "vue",
         "unused-imports"
     ],
+    "settings": {
+        "import/resolver": {
+            "jsconfig": {
+                "config": "jsconfig.json"
+            }
+        }
+    },
     "rules": {
+        "func-style": ["error", "declaration", { "allowArrowFunctions": true }],
         "vue/component-tags-order": [
             "error",
             {
@@ -26,6 +35,17 @@
                     "style"
                 ]
             }
-        ]
+        ],
+        "no-use-before-define": [
+            "error",
+            "nofunc"
+        ],
+        "import/no-extraneous-dependencies": [
+            "error",
+            {
+                "devDependencies": true
+            }
+        ],
+        "vue/require-default-prop": 0
     }
 }
